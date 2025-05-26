@@ -4,8 +4,12 @@ using System.ComponentModel;
 
 namespace MCPSSEServer.Server.Tools
 {
+
+    /// <summary>
+    /// 静态类型 不能用作 参数 WithTools<TimeTool>();
+    /// </summary>
     [McpServerToolType]
-    public static class TimeTool
+    public  class TimeTool
     {
         [McpServerTool, Description("Get the current time for a city")]
         public static string GetCurrentTime(string city) =>

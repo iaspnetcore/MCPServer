@@ -1,10 +1,25 @@
+
+using ModelContextProtocol.AspNetCore;
+using System.ComponentModel;
+using MCPSSEServer.Server.Tools;
+
 namespace MCPSSEServer.Server
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Starting MCPSSEServer Server...");
+
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services
+                    // Add MCP Server to IoC
+                   .AddMcpServer()
+                   //SSE
+                   .WithHttpTransport()
+                   //  Register MCP Tool
+                   .WithTools<TimeTool>();
 
             // Add services to the container.
 
@@ -20,6 +35,8 @@ namespace MCPSSEServer.Server
             app.MapControllers();
 
             app.Run();
+
+
         }
     }
 }
