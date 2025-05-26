@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决�
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCPSSEServer.Server", "src\MCPSSEServer.Server\MCPSSEServer.Server.csproj", "{AA34725B-8E99-4703-ACB5-AABA5891BC69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,9 +49,24 @@ Global
 		{BC7078C7-0834-40CA-BE94-A4E44FBB3F1E}.Release|x64.Build.0 = Release|Any CPU
 		{BC7078C7-0834-40CA-BE94-A4E44FBB3F1E}.Release|x86.ActiveCfg = Release|Any CPU
 		{BC7078C7-0834-40CA-BE94-A4E44FBB3F1E}.Release|x86.Build.0 = Release|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Debug|x64.Build.0 = Debug|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Debug|x86.Build.0 = Debug|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Release|x64.ActiveCfg = Release|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Release|x64.Build.0 = Release|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Release|x86.ActiveCfg = Release|Any CPU
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA34725B-8E99-4703-ACB5-AABA5891BC69} = {9FA3D6BD-1EC1-3BA5-80CB-CE02773A58D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93056459-F1D9-4BB3-9B27-24EB3399D80F}

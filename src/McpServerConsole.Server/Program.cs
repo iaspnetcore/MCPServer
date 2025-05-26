@@ -14,7 +14,7 @@ builder.Logging.AddConsole(consoleLogOptions =>
 
 builder.Services
     .AddMcpServer()
-    .WithStdioServerTransport()   //option sse  HttpTransport
+    .WithStdioServerTransport()   //Protocol Specification. option Server-Sent Events (SSE) transport, HttpTransport
     .WithToolsFromAssembly(); //WithToolsFromAssembly扩展方法，会自动扫描程序集中添加了McpServerTool标签的类进行注册
 
 await builder.Build().RunAsync();

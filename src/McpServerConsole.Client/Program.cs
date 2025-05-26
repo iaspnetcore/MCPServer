@@ -1,10 +1,22 @@
-﻿namespace McpServerConsole.Client
+﻿using ModelContextProtocol.Client;
+
+
+
+
+Console.WriteLine("Now connecting client to MCP server");
+
+
+
+var clientTransport = new StdioClientTransport(new()
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
-    }
-}
+    Name = "Demo Server",
+  
+    Command = "npx",
+    Arguments = ["-y", "@modelcontextprotocol/server-everything"],
+});
+
+
+
+await using var mcpClient = await McpClientFactory.CreateAsync(clientTransport);
+
+Console.WriteLine("Successfully connected!");
