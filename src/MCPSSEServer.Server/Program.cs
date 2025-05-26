@@ -27,6 +27,10 @@ namespace MCPSSEServer.Server
 
             var app = builder.Build();
 
+            //  Map Mcp endpoints
+            app.MapMcp();
+
+
             // Configure the HTTP request pipeline.
 
             app.UseAuthorization();
