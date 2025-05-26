@@ -17,7 +17,7 @@ try
     new SseClientTransportOptions()
     {
         // 设置远程服务器的 URI 地址  (记得替换真实的地址，从魔搭MCP广场获取)
-        Endpoint = new Uri("https://mcp.api-inference.modelscope.cn/sse/215e9461d2xxxxx")
+        Endpoint = new Uri("http://localhost:5159/sse")
     }
     );
 
@@ -29,6 +29,16 @@ try
 
 
     Console.WriteLine("Successfully connected!");
+
+
+    // 调用客户端的 ListToolsAsync 方法，获取可用工具列表
+    var listToolsResult = await mcpClient.ListToolsAsync();
+    Console.WriteLine("功能列表:");
+    // 遍历工具列表，并逐个输出到控制台
+    foreach (var tool in listToolsResult)
+    {
+        Console.WriteLine($"  名称：{tool.Name}，说明：{tool.Description}");
+    }
 }
 
 catch (Exception ex)
