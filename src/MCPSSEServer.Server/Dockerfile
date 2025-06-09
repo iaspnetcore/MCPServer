@@ -1,6 +1,6 @@
 # 请参阅 https://aka.ms/customizecontainer 
 # https://www.cnblogs.com/alives/p/17669161.html
-# 
+# https://wirefuture.com/post/dockerizing-net-applications-step-by-step-tutorial
 
 # 此阶段用于在快速模式(默认为调试配置)下从 VS 运行时
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
@@ -30,3 +30,24 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MCPSSEServer.Server.dll"]
+
+# Use the official .NET SDK image for building the application
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /app
+
+# Copy the project files and restore dependencies
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy remaining files and build the application
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Use the runtime image to run the application
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/out ./
+
+# Expose the port and define the entry point
+EXPOSE 8080
+CMD ["dotnet", "MCPSSEServer.Server.dll"]

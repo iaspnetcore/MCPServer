@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCPSSEServer.Server", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCPSSEServer.Client", "src\MCPSSEServer.Client\MCPSSEServer.Client.csproj", "{55EFE78B-F65B-4DD8-8DBD-BA7A773AAC27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCPSSEServer.HA.Client", "src\MCPSSEServer.HA.Client\MCPSSEServer.HA.Client.csproj", "{7860E99F-5CB2-42C5-97A2-CBB797898430}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,18 @@ Global
 		{55EFE78B-F65B-4DD8-8DBD-BA7A773AAC27}.Release|x64.Build.0 = Release|Any CPU
 		{55EFE78B-F65B-4DD8-8DBD-BA7A773AAC27}.Release|x86.ActiveCfg = Release|Any CPU
 		{55EFE78B-F65B-4DD8-8DBD-BA7A773AAC27}.Release|x86.Build.0 = Release|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Debug|x64.Build.0 = Debug|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Debug|x86.Build.0 = Debug|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Release|x64.ActiveCfg = Release|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Release|x64.Build.0 = Release|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Release|x86.ActiveCfg = Release|Any CPU
+		{7860E99F-5CB2-42C5-97A2-CBB797898430}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
