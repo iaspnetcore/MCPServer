@@ -21,3 +21,13 @@ The WithToolsFromAssembly will scan the assembly for classes with the McpServerT
 
 
 The Server-Sent Events (SSE) transport enables HTTP-based communication between the MCP server and clients. It uses SSE for server-to-client messages and HTTP POST for client-to-server messages.
+
+
+
+The Server = where tools live
+
+The Client = who sends tool requests
+
+The Agent = The customer (who decides what tool to use)
+
+The Tools = The recipes (the code that gets executed)

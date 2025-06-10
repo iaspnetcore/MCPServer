@@ -18,7 +18,7 @@ namespace MCPSSEServer.Server
                    .AddMcpServer()
                    //SSE
                    .WithHttpTransport()
-                   //  Register MCP Tool
+                   //  Register MCP Tool.Custom tools you create and host on a local server.An MCP server exposes a set of "tools" (functions or APIs) that AI clients can invoke.
                    .WithTools<TimeTool>();
 
             // Add services to the container.
@@ -29,6 +29,7 @@ namespace MCPSSEServer.Server
 
             //  Map Mcp endpoints
             app.MapMcp();
+           
 
 
             // Configure the HTTP request pipeline.

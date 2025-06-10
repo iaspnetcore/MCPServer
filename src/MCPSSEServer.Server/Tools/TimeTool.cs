@@ -6,7 +6,7 @@ namespace MCPSSEServer.Server.Tools
 {
 
     /// <summary>
-    /// 静态类型 不能用作 参数 WithTools<TimeTool>();
+    /// error 提示:静态类型 不能用作 参数 WithTools<TimeTool>();->删除static 关键词
     /// </summary>
     [McpServerToolType]
     public  class TimeTool
