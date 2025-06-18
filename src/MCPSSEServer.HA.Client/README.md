@@ -11,7 +11,14 @@ mcp server in home assistant
 http://192.168.2.125:8123/mcp_server/sse
 
 
-## homeassistant-mcp-server.py
+## How to use
+
+1. 确保Home Assistant MCP Server已正确注册
+
+
+
+
+2. homeassistant-mcp-server.py
 
 ~~~
 # homeassistant-mcp-server.py
@@ -34,3 +41,68 @@ if __name__ == "__main__":
     server.run()
 
 ~~~
+
+3.Before you can use tools provided by an MCP server, you need to discover what tools are available and understand their parameters.
+
+Listing All Tools
+
+Each McpClientTool contains metadata about the tool, including:
+
+Name: The tool's identifier
+Description: A human-readable description of what the tool does
+JsonSchema: JSON Schema describing the tool's parameters
+
+ 名称：HassTurnOn，
+ 说明：Turns on/opens/presses a device or entity. For locks, this performs a 'lock' action. Use for requests like 'turn on', 'activate', 'enable', or 'lock'. 
+ JSON Schema: {"type":"object","properties":{"name":{"type":"string"},"area":{"type":"string"},"floor":{"type":"string"},"domain":{"type":"array","items":{"type":"string"}},"device_class":{"type":"array","items":{"type":"string","enum":["identify","restart","update","awning","blind","curtain","damper","door","garage","gate","shade","shutter","window","water","gas","outlet","switch","tv","speaker","receiver"]}}}}
+
+ ~~~
+ {
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "area": {
+            "type": "string"
+        },
+        "floor": {
+            "type": "string"
+        },
+        "domain": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "device_class": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "identify",
+                    "restart",
+                    "update",
+                    "awning",
+                    "blind",
+                    "curtain",
+                    "damper",
+                    "door",
+                    "garage",
+                    "gate",
+                    "shade",
+                    "shutter",
+                    "window",
+                    "water",
+                    "gas",
+                    "outlet",
+                    "switch",
+                    "tv",
+                    "speaker",
+                    "receiver"
+                ]
+            }
+        }
+    }
+}
+ ~~~

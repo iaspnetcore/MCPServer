@@ -6,10 +6,11 @@ using ModelContextProtocol.Client;
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace MCPSSEServer.HA.Client
 
         static async Task Main(string[] args)
         {
-           
+
 
             // Connect to an MCP server
             Console.WriteLine("Connecting client to  home assistant mcp server");
@@ -34,37 +35,34 @@ namespace MCPSSEServer.HA.Client
             // https://www.home-assistant.io/integrations/mcp_server#example-claude-for-desktop
 
 
-
+            // Configure it connect to your MCP server.
             // 配置SSE传输
+            // Get current subscriptions
             var transportOptions = new SseClientTransportOptions
             {
                 Endpoint = new Uri(BASE_URL),
                 AdditionalHeaders = new Dictionary<string, string>
-            {
-                { "Authorization", $"Bearer {API_TOKEN}" }
-            }
+               {
+                  { "Authorization", $"Bearer {API_TOKEN}" }
+               }
             };
 
 
             var transport = new SseClientTransport(transportOptions);
 
 
-
-
-
-
-
-
+            // Create the MCP client
             //2. 使用配置创建 MCP 客户端实例 connect to the MCP server by providing the URL of the server. 
             await using var mcpClient = await McpClientFactory.CreateAsync(transport);
 
-            
-            Console.WriteLine($"Successfully connected!{mcpClient.ServerInfo.Name } {mcpClient.ServerInfo.Version}");
+
+            Console.WriteLine($"Successfully connected!{mcpClient.ServerInfo.Name} {mcpClient.ServerInfo.Version}");
             Console.WriteLine();
 
 
             // step 2. list tools
             // Get all available tools
+            // Get all tools as a list
             Console.WriteLine("Tools available:");
             var listToolsResult = await mcpClient.ListToolsAsync();
             Console.WriteLine("功能列表:");
@@ -73,7 +71,7 @@ namespace MCPSSEServer.HA.Client
             //遍历工具列表，并逐个输出到控制台
             foreach (var tool in listToolsResult)
             {
-                Console.WriteLine($"  名称：{tool.Name}，说明：{tool.Description} ");
+                Console.WriteLine($"  名称：{tool.Name}，说明：{tool.Description} JSON Schema: {tool.JsonSchema}");
             }
 
             Console.WriteLine();
@@ -84,34 +82,43 @@ namespace MCPSSEServer.HA.Client
             }
 
 
-            //step 3.
-            var tool1 = listToolsResult.FirstOrDefault(t => t.Name == "HassTurnOff" );
+            //step 3.CallTool
+            // https://modelcontextprotocol.github.io/csharp-sdk/api/ModelContextProtocol.Client.McpClientExtensions.html
+            var tool1 = listToolsResult.FirstOrDefault(t => t.Name == "HassTurnOff");
+
+            //var echoTool = listToolsResult.FirstOrDefault(t => t.Name == "HassTurnOff");
+            //// Access schema properties
+            //string type = echoTool.JsonSchema.GetProperty("type").GetString();
+            //JsonElement properties = echoTool.JsonSchema.GetProperty("properties");
+            //string paramDescription = properties.GetProperty("message").GetProperty("description").GetString();
+            //int requiredCount = echoTool.JsonSchema.GetProperty("required").GetArrayLength();
+
 
             if (tool1 != null)
             {
-                var parameters = new
-                {
-                    entity_id = "light.lemesh_wy0c15_5cbc_light",
-                    state = "on"
-                };
+               
 
                 // 构建参数
                 var arguments = new Dictionary<string, object?>
                 {
-                    ["entity_id"] = "light.lemesh_wy0c15_5cbc_light",
-                    ["state"] =  "off"
+                    ["domain"] = "light",  // 设备类型（如light/switch）
+                    ["entity_id"] = "light.lemesh_wy0c15_5cbc_light"
+                   
                 };
 
+                var parameters2 = new Dictionary<string, object>
+                {
+                    ["domain"] = "light",  // 设备类型（如light/switch）
+                    ["entity_id"] = "light.bedroom",  // 具体设备ID
+                    ["area"] = "卧室"  // 可选区域标识
+                };
 
-                var response1 = await mcpClient.CallToolAsync( tool1.Name,  arguments  );
+                // Call a simple echo tool with a string argument
+                
+                var response = await mcpClient.CallToolAsync(tool1.Name, arguments);
 
 
-
-                var response = await mcpClient.CallToolAsync(
-   tool1.Name,
-   new Dictionary<string, object?>() { ["city"] = "Chengdu" });
-
-                Console.WriteLine($"执行结果: {response.Content.FirstOrDefault()?.Text}");
+                Console.WriteLine($"执行结果: {response.Content.FirstOrDefault()?.Text} \n response.Content.FirstOrDefault()?.Type}}");
 
             }
         }

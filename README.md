@@ -1,3 +1,7 @@
+# Develop with the MCP C# SDK
+
+
+## project information
 
 F:\developer_mcp
 
@@ -31,3 +35,23 @@ The Client = who sends tool requests
 The Agent = The customer (who decides what tool to use)
 
 The Tools = The recipes (the code that gets executed)
+
+
+
+## How it works
+
+Build a minimal MCP server
+
+Build a minimal MCP client
+
+Build a minimal MCP client for home assistant MCP server
+
+Build an minimal chat app
+
+Build an minimal AI chat app
+
+
+
+useful links
+
+https://learn.microsoft.com/en-us/dotnet/ai/quickstarts/build-chat-app?pivots=openai
