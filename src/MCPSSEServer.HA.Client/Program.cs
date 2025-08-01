@@ -32,7 +32,7 @@ namespace MCPSSEServer.HA.Client
             // Connect to an MCP server
             Console.WriteLine("Connecting client to  home assistant mcp server");
 
-            // https://www.home-assistant.io/integrations/mcp_server#example-claude-for-desktop
+            //see: https://www.home-assistant.io/integrations/mcp_server#example-claude-for-desktop
 
 
             // Configure it connect to your MCP server.
