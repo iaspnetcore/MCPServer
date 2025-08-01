@@ -23,11 +23,11 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
     {
 
         // get ak from https://open.ecovacs.cn/#/preparationForUse
-        private const string API_TOKEN = "GwQhGTDFpetB7bXhHy"; // "YOUR_LONG_LIVED_ACCESS_TOKEN";  API 访问密钥，用于验证接口调用权限
+        private const string API_TOKEN = "GwQhGTDFpetB7bXhHyDT0kRcywDNlG22"; // "YOUR_LONG_LIVED_ACCESS_TOKEN";  API 访问密钥，用于验证接口调用权限
 
         // 配置 SSE 连接
         // https://github.com/ecovacs-ai/ecovacs-mcp
-        private const string BASE_URL = "https://mcp-open.ecovacs.cn/sse?ak=GwQhGTDFpetB7bXhHyDT0kRcywDNlG22"; //  https://mcp-open.ecovacs.cn/sse?ak=your ak
+        private const string BASE_URL = "https://mcp-open.ecovacs.cn/sse?ak=your ak"; //  https://mcp-open.ecovacs.cn/sse?ak=your ak
 
         static async Task Main(string[] args)
         {
@@ -46,8 +46,7 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
                 Endpoint = new Uri(BASE_URL),
                 AdditionalHeaders = new Dictionary<string, string>
                {
-                  { "ak", $"{API_TOKEN}" },
-                  { "Authorization", $"Bearer {API_TOKEN}" }
+                  { "ak", $"{API_TOKEN}" }
                },
              
             };
