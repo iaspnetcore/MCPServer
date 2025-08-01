@@ -13,6 +13,7 @@ try
     //1.Connect to an MCP server
     //创建一个 SSE（Server-Sent Events）客户端传输配置实例
     // 修改TransportType为SSE，指定SSE Server的BaseUrl
+    // The configuration for an Sse MCP-server should be defined as the following:
     var clientTransport = new SseClientTransport(
 
     // Method2:  TransportType = SSE 配置传输选项，指定服务端点（Endpoint）
