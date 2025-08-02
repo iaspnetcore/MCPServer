@@ -23,11 +23,11 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
     {
 
         // get ak from https://open.ecovacs.cn/#/preparationForUse
-        private const string API_TOKEN = "GwQhGTDFpetB7bXhHyDT0kRcywDNlG22"; // "YOUR_LONG_LIVED_ACCESS_TOKEN";  API 访问密钥，用于验证接口调用权限
+        private const string API_TOKEN = "jkSeM443KQdjXwcH0BUJJ6ffUSvPWVqL"; // "YOUR_LONG_LIVED_ACCESS_TOKEN";  API 访问密钥，用于验证接口调用权限
 
-        // 配置 SSE 连接
+        // 配置 SSE 连接  run MCP server in SSE mode
         // https://github.com/ecovacs-ai/ecovacs-mcp
-        private const string BASE_URL = "https://mcp-open.ecovacs.cn/sse?ak=your ak"; //  https://mcp-open.ecovacs.cn/sse?ak=your ak
+        private const string BASE_URL =$"https://mcp-open.ecovacs.cn/sse?ak={API_TOKEN}"; //  https://mcp-open.ecovacs.cn/sse?ak=your ak
 
         static async Task Main(string[] args)
         {
@@ -44,13 +44,11 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
             var transportOptions = new SseClientTransportOptions
             {
                 Endpoint = new Uri(BASE_URL),
-                AdditionalHeaders = new Dictionary<string, string>
-               {
-                  { "ak", $"{API_TOKEN}" }
-               },
+              
              
             };
 
+           
 
             var transport = new SseClientTransport(transportOptions);
 
@@ -83,6 +81,8 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
 
             //step 3.CallTool
             // https://modelcontextprotocol.github.io/csharp-sdk/api/ModelContextProtocol.Client.McpClientExtensions.html
+
+            // Query robot list
             var tool1 = listToolsResult.FirstOrDefault(t => t.Name == "get_device_list");
 
             //var echoTool = listToolsResult.FirstOrDefault(t => t.Name == "HassTurnOff");
@@ -101,8 +101,33 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
                 // 构建参数
                 var arguments = new Dictionary<string, object?>
                 {
-                    ["ak"] = $"{API_TOKEN}"
+                    
+                };
 
+
+                // Call a simple echo tool with a string argument
+
+                var response = await mcpClient.CallToolAsync(tool1.Name, arguments);
+
+               
+
+
+                Console.WriteLine($"执行结果: {response.Content.FirstOrDefault()?.Text} \n response.Content.FirstOrDefault()?.Type}}");
+
+            }
+
+           
+
+           tool1 = listToolsResult.FirstOrDefault(t => t.Name == "get_work_state");
+
+            if (tool1 != null)
+            {
+
+
+                // 构建参数
+                var arguments = new Dictionary<string, object?>
+                {
+                    ["nickname"] = "DEEBOT X5 PRO"
 
                 };
 
@@ -112,11 +137,14 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
                 var response = await mcpClient.CallToolAsync(tool1.Name, arguments);
 
 
+
+
                 Console.WriteLine($"执行结果: {response.Content.FirstOrDefault()?.Text} \n response.Content.FirstOrDefault()?.Type}}");
 
             }
 
-           // var response = await mcpClient.CallToolAsync(tool1.Name);
+
+
 
 
             Console.WriteLine("Hello, World!");
