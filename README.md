@@ -22,6 +22,7 @@ The WithToolsFromAssembly will scan the assembly for classes with the McpServerT
 
 [MCPSSEServer.Server](https://github.com/iaspnetcore/MCPServer/tree/master/src/MCPSSEServer.Server) A Simple .NET C# MCP Server using SSE transport using modelcontextprotocol / csharp-sdk
 
+[MCPSSEServer.Client](https://github.com/iaspnetcore/MCPServer/tree/master/src/MCPSSEServer.Client) A Simple .NET C# MCP Client using SSE transport using modelcontextprotocol / csharp-sdk
 
 
 The Server-Sent Events (SSE) transport enables HTTP-based communication between the MCP server and clients. It uses SSE for server-to-client messages and HTTP POST for client-to-server messages.
@@ -45,6 +46,8 @@ Build a minimal MCP server
 Build a minimal MCP client
 
 Build a minimal MCP client for home assistant MCP server
+
+Build a minimal MCP client for ecovacs MCP server
 
 Build an minimal chat app
 

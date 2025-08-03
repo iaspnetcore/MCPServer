@@ -1,3 +1,7 @@
+/* Using our MCP server with SSE Transport
+ * 
+ */
+
 
 using ModelContextProtocol.AspNetCore;
 using System.ComponentModel;
