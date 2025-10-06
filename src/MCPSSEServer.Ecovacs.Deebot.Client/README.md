@@ -21,7 +21,11 @@ step 1. get ak
 
 I got an API key by logging into my ecovacs account
 
-https://open.ecovacs.cn/#/preparationForUse
+go to: https://open.ecovacs.cn/#/preparationForUse   
+
+login
+
+then get ak
 
 
 

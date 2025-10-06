@@ -22,8 +22,8 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
     class Program
     {
 
-        // get ak from https://open.ecovacs.cn/#/preparationForUse
-        private const string API_TOKEN = "jkSeM443KQdjXwcH0BUJJ6ffUSvPWVqL"; // "YOUR_LONG_LIVED_ACCESS_TOKEN";  API 访问密钥，用于验证接口调用权限
+        // get ak from https://open.ecovacs.cn/#/preparationForUse   login ,then get ak
+        private const string API_TOKEN = "VojLtNi9CKY2YMB8YZRbIHmUS7rpsmGY"; // "YOUR_LONG_LIVED_ACCESS_TOKEN";  API 访问密钥，用于验证接口调用权限
 
         // 配置 SSE 连接  run MCP server in SSE mode
         // https://github.com/ecovacs-ai/ecovacs-mcp
@@ -33,6 +33,7 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
         {
 
             // step 1.Connect to an MCP server
+            // Note:调用 ListToolsAsync() 不需要接口认证
             Console.WriteLine("Connecting client to  Ecovacs MCP Server");
 
             //guide: https://github.com/ecovacs-ai/ecovacs-mcp
@@ -81,6 +82,7 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
 
             //step 3.CallTool
             // https://modelcontextprotocol.github.io/csharp-sdk/api/ModelContextProtocol.Client.McpClientExtensions.html
+            // Note:此步开始执行ToolsAsync()， 开始需要接口认证
 
             // Query robot list
             var tool1 = listToolsResult.FirstOrDefault(t => t.Name == "get_device_list");
@@ -92,7 +94,7 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
             //string paramDescription = properties.GetProperty("message").GetProperty("description").GetString();
             //int requiredCount = echoTool.JsonSchema.GetProperty("required").GetArrayLength();
 
-            // Call a simple echo tool with a string argument
+            // Call tool1 tool with a string argument
 
             if (tool1 != null)
             {
@@ -117,6 +119,7 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
             }
 
            
+            //run ok
 
            tool1 = listToolsResult.FirstOrDefault(t => t.Name == "get_work_state");
 
@@ -127,7 +130,7 @@ namespace MCPSSEServer.Ecovacs.Deebot.Client
                 // 构建参数
                 var arguments = new Dictionary<string, object?>
                 {
-                    ["nickname"] = "DEEBOT X5 PRO"
+                    ["nickname"] = "DEEBOTX5PRO"
 
                 };
 
